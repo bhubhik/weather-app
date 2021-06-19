@@ -5,7 +5,7 @@ const App = () => {
   const apiKey = '37039385b60f47fdaff90331211806';
   const [lat, setLat] = useState(0);
   const [lon, setLon] = useState(0);
-  const [weatherData, setWeatherData] = useState();
+  const [weatherData, setWeatherData] = useState({});
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((loc) => {
