@@ -16,7 +16,7 @@ const App = () => {
     if (lat !== 0 && lon !== 0) {
       const fetchData = async () => {
         const response = await axios(
-          ` http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat},${lon}`
+          ` https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat},${lon}`
         );
         console.log(response.data);
         const results = response.data;
