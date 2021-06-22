@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import Display from './components/display';
 import axios from 'axios';
+import './App.css';
 
 const App = () => {
   const apiKey = '37039385b60f47fdaff90331211806';
@@ -37,17 +39,14 @@ const App = () => {
 
   return (
     <div>
-      <h1>Weather App</h1>
-      <h3>
-        Coordinates : latitude= {lat}, longitude= {lon}
-      </h3>
-      <ul>
-        <li>Name : {weatherData.name}</li>
-        <li>Country : {weatherData.country}</li>
-        <li>Temperature : {weatherData.temperature}</li>
-        <li>description : {weatherData.description}</li>
-      </ul>
-      <img src={weatherData.icon} alt='Icon' />
+      <div className='p-4 '>
+        <h1 className='app-title text-6xl font-bold text-blue-500  flex justify-center items-center h-28'>
+          Weather App
+        </h1>
+      </div>
+      <div className='h-auto '>
+        <Display weatherData={weatherData} />
+      </div>
     </div>
   );
 };
