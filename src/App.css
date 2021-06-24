@@ -1,6 +1,13 @@
 body {
   font-family: Amaranth;
+  background-color: #061236;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .app-title {
   font-family: 'Lobster', cursive;
+}
+.place {
+  font-family: 'Fjalla One', sans-serif;
 }

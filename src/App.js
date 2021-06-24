@@ -39,11 +39,11 @@ const App = () => {
 
   return (
     <div>
-      <div className='p-4 '>
-        <h1 className='app-title text-6xl font-bold text-blue-500  flex justify-center items-center h-28'>
+      <header className='p-4 '>
+        <h1 className='app-title text-6xl font-bold text-blue-300  flex justify-center items-center h-28'>
           Weather App
         </h1>
-      </div>
+      </header>
       <div className='h-auto '>
         <Display weatherData={weatherData} />
       </div>

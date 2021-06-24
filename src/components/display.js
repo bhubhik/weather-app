@@ -4,23 +4,23 @@ import SearchBox from './searchBox';
 const Display = ({ weatherData }) => {
   return (
     <div>
-      <div className=' flex justify-center items-center bg-yellow-100 h-24 outline-none'>
+      <div className=' flex justify-center items-center  h-24 outline-none'>
         <SearchBox />
       </div>
-      <div className='container flex justify-center items-center  '>
-        <div className='bg-yellow-300 w-10/12'>
-          <h1>{weatherData.name}</h1>
-          <h2>
-            {weatherData.country}, {weatherData.region}{' '}
-          </h2>
-          <div>
-            <h2>{weatherData.temperature}°c</h2>
-            <h3>{weatherData.description}</h3>
-          </div>
-          <div>
-            <img src={weatherData.icon} alt='icon' />
-          </div>
+      <div className=' flex flex-col justify-center items-center text-yellow-300 mt-8  rounded-xl  '>
+        <h1 className='text-5xl place uppercase p-3 mb-6'>
+          {weatherData.name}
+        </h1>
+        <div className='image h-full w-44  mb-5 p-4'>
+          <img src={weatherData.icon} className='icon w-44 ' alt='icon' />
         </div>
+        <div className='mb-5 flex flex-col justify-center items-center'>
+          <h2 className='text-4xl'>{weatherData.temperature}°c</h2>
+          <h3 className='text-lg'>{weatherData.description}</h3>
+        </div>
+        <h2 className='text-lg p-4'>
+          {weatherData.country}, {weatherData.region}{' '}
+        </h2>
       </div>
     </div>
   );
