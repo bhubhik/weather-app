@@ -7,7 +7,7 @@ const Display = ({ weatherData }) => {
       <div className=' flex justify-center items-center  h-24 outline-none'>
         <SearchBox />
       </div>
-      <div className=' flex flex-col justify-center items-center text-yellow-300 mt-8  rounded-xl  '>
+      <div className=' flex flex-col justify-center items-center text-yellow-100 mt-8  rounded-xl  '>
         <h1 className='text-5xl place uppercase p-3 mb-6'>
           {weatherData.name}
         </h1>
@@ -15,8 +15,9 @@ const Display = ({ weatherData }) => {
           <img src={weatherData.icon} className='icon w-44 ' alt='icon' />
         </div>
         <div className='mb-5 flex flex-col justify-center items-center'>
-          <h2 className='text-4xl'>{weatherData.temperature}°c</h2>
-          <h3 className='text-lg'>{weatherData.description}</h3>
+          <h2 className='text-5xl'>{weatherData.temperature}°c</h2>
+          <h3 className='text-2xl'>{weatherData.description}</h3>
+          <h3 className='text-2xl'>Humid: {weatherData.humidity}</h3>
         </div>
         <h2 className='text-lg p-4'>
           {weatherData.country}, {weatherData.region}{' '}
