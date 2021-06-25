@@ -1,26 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import Display from './components/display';
+import SearchBox from './components/searchBox';
 import axios from 'axios';
+
 import './App.css';
 
 const App = () => {
   const apiKey = '37039385b60f47fdaff90331211806';
   const [lat, setLat] = useState(0);
   const [lon, setLon] = useState(0);
+  const [loading, setLoading] = useState(true);
   const [weatherData, setWeatherData] = useState({});
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition((loc) => {
-      setLat(loc.coords.latitude);
-      setLon(loc.coords.longitude);
-      console.log(lat, lon);
-    });
+    setTimeout(() => {
+      //Foe spinner to load
+      navigator.geolocation.getCurrentPosition((loc) => {
+        setLat(loc.coords.latitude);
+        setLon(loc.coords.longitude);
+      });
+    }, 1000);
     if (lat !== 0 && lon !== 0) {
       const fetchData = async () => {
         const response = await axios(
           ` https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat},${lon}`
         );
-        console.log(response.data);
+
+        setLoading(false);
         const results = response.data;
         setWeatherData({
           name: results.location.name,
@@ -31,11 +38,30 @@ const App = () => {
           icon: results.current.condition.icon,
           humidity: results.current.humidity,
         });
-        console.log(weatherData);
       };
       fetchData();
     }
   }, [lat, lon]);
+
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    if (search === '') return;
+    const response = await axios.get(
+      ` https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${search}`
+    );
+    const results = response.data;
+    setWeatherData({
+      name: results.location.name,
+      country: results.location.country,
+      region: results.location.region,
+      temperature: results.current.temp_c,
+      description: results.current.condition.text,
+      icon: results.current.condition.icon,
+      humidity: results.current.humidity,
+    });
+    setLoading(false);
+  };
 
   return (
     <div>
@@ -45,7 +71,14 @@ const App = () => {
         </h1>
       </header>
       <div className='h-auto '>
-        <Display weatherData={weatherData} />
+        <div className=' flex justify-center items-center  h-24 outline-none'>
+          <SearchBox
+            handleSearch={handleSearch}
+            search={search}
+            setSearch={setSearch}
+          />
+        </div>
+        <Display weatherData={weatherData} loading={loading} apiKey={apiKey} />
       </div>
     </div>
   );
