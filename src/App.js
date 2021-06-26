@@ -15,51 +15,48 @@ const App = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      //Foe spinner to load
+      //For spinner to load
       navigator.geolocation.getCurrentPosition((loc) => {
         setLat(loc.coords.latitude);
         setLon(loc.coords.longitude);
       });
     }, 1000);
     if (lat !== 0 && lon !== 0) {
-      const fetchData = async () => {
-        const response = await axios(
-          ` https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat},${lon}`
-        );
-
-        setLoading(false);
-        const results = response.data;
-        setWeatherData({
-          name: results.location.name,
-          country: results.location.country,
-          region: results.location.region,
-          temperature: results.current.temp_c,
-          description: results.current.condition.text,
-          icon: results.current.condition.icon,
-          humidity: results.current.humidity,
-        });
-      };
       fetchData();
     }
   }, [lat, lon]);
 
+  const fetchData = async () => {
+    try {
+      const response = await axios(
+        `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${
+          search === '' ? lat + ',' + lon : search
+        }`
+      );
+
+      setLoading(false);
+      const results = response.data;
+      setWeatherData({
+        name: results.location.name,
+        country: results.location.country,
+        region: results.location.region,
+        temperature: results.current.temp_c,
+        description: results.current.condition.text,
+        icon: results.current.condition.icon,
+        humidity: results.current.humidity,
+      });
+    } catch (error) {
+      console.log(error);
+      setWeatherData({
+        name: `Invalid City \\ Country name. Please Try again`,
+      });
+    }
+  };
+
   const handleSearch = async (e) => {
     e.preventDefault();
     setLoading(true);
-    if (search === '') return;
-    const response = await axios.get(
-      ` https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${search}`
-    );
-    const results = response.data;
-    setWeatherData({
-      name: results.location.name,
-      country: results.location.country,
-      region: results.location.region,
-      temperature: results.current.temp_c,
-      description: results.current.condition.text,
-      icon: results.current.condition.icon,
-      humidity: results.current.humidity,
-    });
+    fetchData();
     setLoading(false);
   };
 
