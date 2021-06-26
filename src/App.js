@@ -44,7 +44,7 @@ const App = () => {
         description: results.current.condition.text,
         icon: results.current.condition.icon,
         humidity: results.current.humidity,
-        time: results.location.localtime,
+        time: results.location.localtime.slice(11),
       });
       console.log(response);
     } catch (error) {
@@ -65,7 +65,7 @@ const App = () => {
   return (
     <div>
       <header className='p-4 '>
-        <h1 className='app-title text-6xl font-bold text-blue-300  flex justify-center items-center h-28'>
+        <h1 className='app-title text-6xl font-bold text-blue-700  flex justify-center items-center h-28'>
           Weather App
         </h1>
       </header>

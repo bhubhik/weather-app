@@ -1,13 +1,11 @@
 body {
-  font-family: Amaranth;
-  background-color: #061236;
+  font-family: 'Fjalla One', sans-serif;
+  color: #c55039;
+  background-image: url('./images/background.jpg');
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 .app-title {
   font-family: 'Lobster', cursive;
-}
-.place {
-  font-family: 'Fjalla One', sans-serif;
 }
