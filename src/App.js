@@ -44,7 +44,9 @@ const App = () => {
         description: results.current.condition.text,
         icon: results.current.condition.icon,
         humidity: results.current.humidity,
+        time: results.location.localtime,
       });
+      console.log(response);
     } catch (error) {
       console.log(error);
       setWeatherData({

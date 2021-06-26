@@ -20,6 +20,7 @@ const Display = ({ weatherData, loading }) => {
             <h2 className='text-5xl'>{weatherData.temperature}°c</h2>
             <h3 className='text-2xl'>{weatherData.description}</h3>
             <h3 className='text-2xl'>Humid: {weatherData.humidity}</h3>
+            <h2>{weatherData.time.slice(11)}</h2>
           </div>
           <h2 className='text-lg p-4'>
             {weatherData.country}, {weatherData.region}
