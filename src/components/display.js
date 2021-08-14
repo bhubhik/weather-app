@@ -10,13 +10,11 @@ const Display = ({ weatherData, loading }) => {
         </div>
       ) : (
         <div className=' flex flex-col justify-center items-center display mt-8  rounded-xl  '>
-          <h1 className='text-5xl place uppercase p-3 mb-6'>
-            {weatherData.name}
-          </h1>
-          <div className='image h-full w-44  mb-5 p-4'>
+          <h1 className='text-5xl place uppercase p-3 '>{weatherData.name}</h1>
+          <div className='image h-full w-44  mb-1 p-4'>
             <img src={weatherData.icon} className='icon w-44 ' alt='icon' />
           </div>
-          <div className='mb-5 flex flex-col justify-center items-center'>
+          <div className='mb-2 flex flex-col justify-center items-center'>
             <h2 className='text-5xl'>{weatherData.temperature}°c</h2>
             <h3 className='text-2xl'>{weatherData.description}</h3>
             <h3 className='text-2xl'>Humid: {weatherData.humidity}</h3>
